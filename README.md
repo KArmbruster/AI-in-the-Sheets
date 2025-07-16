@@ -7,7 +7,6 @@ Process text, generate content, translate languages, summarize data, and much mo
 
 - **Custom Sheet Function**: Directly call the Gemini API from any cell with the `=GEMINI()` function.
 - **Multi-Cell Prompts**: Concatenate text from multiple cells to form a single, powerful prompt (e.g., `=GEMINI(A2:C2)`).
-- **Menu-Driven Execution**: Process an entire column of data at once by selecting cells and using the "Gemini AI" menu.
 - **Adjustable Creativity**: Control the randomness of the AI's response by setting a `temperature` parameter (defaults to `0.0` for deterministic output).
 - **Secure API Key Storage**: Your API key is stored securely using Google's `PropertiesService`, not hardcoded in the script.
 - **Simple Setup**: Get up and running in minutes with a simple copy-paste installation.
@@ -45,11 +44,7 @@ Your script is now installed and ready to use!
 
 ## Usage
 
-You can interact with the Gemini API in two ways:
-
-### 1. Using the `=GEMINI()` Custom Function
-
-This is the most flexible way to use the script. You can use it just like any other spreadsheet function.
+You can interact with the Gemini API using the `=GEMINI()` custom function. This is the most flexible way to use the script, and you can use it just like any other spreadsheet function.
 
 **Syntax:**
 
@@ -95,15 +90,6 @@ IGNORE_WHEN_COPYING_END
 =GEMINI(A2, 0.7)
 
 Generated code
-### 2. Using the "Generate for Selected Cells" Menu
-
-This method is ideal for processing many rows of data at once.
-
-1.  Enter your prompts in a single column.
-2.  Select the cells containing the prompts you want to process.
-3.  Go to the **Gemini AI** menu and click **"Generate for Selected Cells"**.
-4.  The script will process each selected cell and write the AI's output in the column immediately to the right of your selection.
-
 ## Configuration
 
 ### Model

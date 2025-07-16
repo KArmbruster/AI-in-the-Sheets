@@ -22,8 +22,6 @@ function onOpen() {
   SpreadsheetApp.getUi()
       .createMenu('Gemini AI')
       .addItem('Set API Key', 'setApiKey')
-      .addSeparator()
-      .addItem('Generate for Selected Cells', 'generateForSelectedCells')
       .addToUi();
 }
 
@@ -71,37 +69,6 @@ function GEMINI(prompt_range, temperature = 0) { // UPDATED DEFAULT
   return callGeminiAPI(prompt_text, temperature);
 }
 
-
-/**
- * Iterates through selected cells, calls the Gemini API for each, and populates the results.
- */
-function generateForSelectedCells() {
-  const sheet = SpreadsheetApp.getActiveSheet();
-  const selection = SpreadsheetApp.getActiveRange();
-  if (!selection) {
-    SpreadsheetApp.getUi().alert('Please select a range of cells to process.');
-    return;
-  }
-  const inputColumn = selection.getColumn();
-  const outputColumn = inputColumn + 1; // Output to the column to the right.
-
-  const ranges = selection.getRanges();
-  for (const range of ranges) {
-    for (let i = 1; i <= range.getNumRows(); i++) {
-      const row = range.getRow() + i - 1;
-      const prompt = sheet.getRange(row, inputColumn).getValue();
-      if (prompt) {
-        try {
-          // This will use the new default temperature of 0 from callGeminiAPI
-          const result = callGeminiAPI(prompt);
-          sheet.getRange(row, outputColumn).setValue(result);
-        } catch (e) {
-          sheet.getRange(row, outputColumn).setValue(`Error: ${e.message}`);
-        }
-      }
-    }
-  }
-}
 
 /**
  * A helper function that handles the actual API call to Gemini.
